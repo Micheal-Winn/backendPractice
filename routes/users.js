@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+    res.send('respond with a resource');
 });
 
+router.get('/:userId', function(req, res, next) {
+    res.send('min ga lar par');
+});
+hghgjhjhj
 module.exports = router;
