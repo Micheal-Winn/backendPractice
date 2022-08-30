@@ -41,6 +41,18 @@ const getMovieById = async (req,res,next)=>
     }
 }
 
+const findMovieByTitle = async (req,res,next)=>{
+    let title = req.params['title'];
+    try {
+        const movies = await moviesService.searchMovieByTitle(title);
+        if(!movies) throw Error('Cannot found Movie');
+        await res.status(200).json(movies);
+    }catch (err)
+    {
+        await res.status(404).json({message:err})
+    }
+}
+
 const  updateMovie = async (req,res,next)=>{
     let movieId = req.params['movieId'];
     let movie = req.body;
@@ -55,6 +67,17 @@ const  updateMovie = async (req,res,next)=>{
     }
 }
 
+const deleteMovie = async (req,res,next)=>{
+    let movieId = req.params['movieId'];
+    try {
+        const deletedMovie = await moviesService.deleteMovie(movieId);
+        if(!deletedMovie) throw Error('Cannot delete Movie');
+        await res.status(200).json(deletedMovie);
+    }catch (err)
+    {
+        await res.status(400).json({message:err})
+    }
+}
 
 
 
@@ -63,5 +86,7 @@ module.exports = {
     getAllMovie,
     newMovie,
     getMovieById,
-    updateMovie
+    updateMovie,
+    deleteMovie,
+    findMovieByTitle
 }
