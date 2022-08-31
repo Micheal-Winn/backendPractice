@@ -40,7 +40,11 @@ mongoose.connect(db,{
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies',movieRouter);
+<<<<<<< HEAD
 app.use('/api/reviews',reviewRouter)
+=======
+app.use('/reviews',reviewRouter)
+>>>>>>> github/master
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

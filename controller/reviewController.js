@@ -22,27 +22,34 @@ const saveReview = async (req,res,next)=>{
         await res.status(400).json({message:err})
     }
 }
-
-const getReviewById = async (req,res,next)=>{
-    try {
-        let reviewId = req.params['reviewId'];
-        // console.log("reviewID",reviewId)
-        const review = await reviewServices.getReviewById(reviewId);
-        if(!review) throw Error('No review');
-        await res.status(200).json(review)
-    }catch (err)
-    {
-        await res.status(400).json({message:err})
-    }
-}
-
-
-
-
-
-
-module.exports = {
-    saveReview,
-    getAllReview,
-    getReviewById
-}
+//
+// <<<<<<< HEAD
+// const getReviewById = async (req,res,next)=>{
+//     try {
+//         let reviewId = req.params['reviewId'];
+//         // console.log("reviewID",reviewId)
+//         const review = await reviewServices.getReviewById(reviewId);
+//         if(!review) throw Error('No review');
+//         await res.status(200).json(review)
+//     }catch (err)
+//     {
+//         await res.status(400).json({message:err})
+//     }
+// }
+//
+//
+// =======
+// >>>>>>> github/master
+//
+//
+//
+//
+// module.exports = {
+//     saveReview,
+// <<<<<<< HEAD
+//     getAllReview,
+//     getReviewById
+// =======
+//     getAllReview
+// >>>>>>> github/master
+// }
