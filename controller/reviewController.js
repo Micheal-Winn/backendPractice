@@ -11,19 +11,17 @@ const getAllReview = async (req,res,next)=>
         await res.status(400).json({message:err})
     }
 }
-
-const getReviewByMovieId = async (req,res,next)=>{
+const saveReview = async (req,res,next)=>{
     try {
-        let movieId = req.params['movieId'];
-        const review = await reviewServices.getReviewByMovieId(movieId);
-        if(!review) throw Error('No review');
-        await res.status(200).json(review)
+        const body = req.body;
+        const review = await reviewServices.saveReview(body);
+        if(!review) throw Error('review cannot be saved');
+        await res.status(201).json(review)
     }catch (err)
     {
         await res.status(400).json({message:err})
     }
 }
-
 
 const getReviewById = async (req,res,next)=>{
     try {
@@ -38,51 +36,15 @@ const getReviewById = async (req,res,next)=>{
     }
 }
 
-const saveReview = async (req,res,next)=>{
-    try {
-        const body = req.body;
-        const review = await reviewServices.saveReview(body);
-        if(!review) throw Error('review cannot be saved');
-        await res.status(201).json(review)
-    }catch (err)
-    {
-        await res.status(400).json({message:err})
-    }
-}
 
-const updateReview = async function (req,res,next)
-{
-    let reviewId = req.params['reviewId'];
-    let review = req.body;
-    console.log(`update review ${reviewId} `,req.body);
-    try {
-        const updateReview = await reviewServices.updateReview(reviewId,review);
-        console.log('Updated Review ',updateReview);
-        if(!updateReview) throw Error('Cannot update Review');
-        await res.status(200).json(updateReview);
 
-    }catch(err)
-    {
-        await res.status(400).json({message: err})
-    }
-}
-const deleteReview = async (req,res,next)=> {
-    let reviewId = req.params['reviewId'];
-    try {
-        const deleteReview = await reviewServices.deleteReview(reviewId);
-        if (!deleteReview) throw Error('Cannot delete review');
-        await res.status(200).json(deleteReview);
-    } catch (err) {
-        await res.status(400).json({message: err})
-    }
-}
+
+
 
 
 module.exports = {
-    getAllReview,
-    getReviewById,
-    getReviewByMovieId,
     saveReview,
-    updateReview,
-    deleteReview,
+    getAllReview,
+    getAllReview,
+    getReviewById
 }
